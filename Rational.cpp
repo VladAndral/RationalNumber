@@ -64,6 +64,10 @@ ostream& operator<<(ostream& stream, const Rational& rational) {
 	return stream;
 }
 
+Rational reduceFraction() {
+	// Find greatest common factor (GCF) between numerator and denominator, divide
+}
+
 
 bool Rational::set_value(int num, int den) {
 	numerator_ = num;

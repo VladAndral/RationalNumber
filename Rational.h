@@ -30,6 +30,8 @@ class Rational {
     */
     friend ostream& operator<<(ostream& stream, const Rational& rational);
 
+    Rational reduceFraction();
+
     private:
     int numerator_; // Underscore is to let the reader know that the variable is private
     int denominator_;
