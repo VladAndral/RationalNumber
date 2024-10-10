@@ -31,7 +31,7 @@ class Rational {
     friend ostream& operator<<(ostream& stream, const Rational& rational);
     
     // TODO: Overload inputs to feed in directly to Rational object 
-    friend ostream& operator>>(ostream& stream, const Rational& rational);
+    friend istream& operator>>(istream& stream,  Rational& rational);
 
 
     void reduceFraction() ;

@@ -36,16 +36,16 @@ Rational Rational::Multiply(const Rational& refToRatObj) const {
 	return toRetrun;
 }
 
-Rational Rational::operator+(const Rational& refToRatObj) const { 
+Rational Rational::operator+(const Rational& refToRatObj) const {
 	int numerator = (numerator_*refToRatObj.denominator_) + (refToRatObj.numerator_*denominator_);
-	int denominator = (denominator_*refToRatObj.denominator_) + (refToRatObj.denominator_*denominator_);
+	int denominator = (denominator_*refToRatObj.denominator_);
 	Rational toRetrun(numerator, denominator);
 	return toRetrun;
 }
 
 Rational Rational::operator-(const Rational& refToRatObj) const {
 	int numerator = (numerator_*refToRatObj.denominator_) - (refToRatObj.numerator_*denominator_);
-	int denominator = (denominator_*refToRatObj.denominator_) - (refToRatObj.denominator_*denominator_);
+	int denominator = (denominator_*refToRatObj.denominator_);
 	Rational toRetrun(numerator, denominator);
 	return toRetrun;
 }
@@ -78,7 +78,31 @@ ostream& operator<<(ostream& stream, const Rational& rational) {
 }
 
 // TODO:
-ostream& operator>>(ostream& stream, const Rational& rational) {
+istream& operator>>(istream& stream,  Rational& rational) {
+	string fractionInput;
+	stream >> fractionInput;
+
+	string st_numerator;
+	string st_denominator;
+	bool reachedSlash = false;
+	for (int i = 0; i < fractionInput.length(); i++) {
+        // Convert each character to lowercase using tolower
+		if (fractionInput[i] == '/') {
+			reachedSlash = true;
+			continue;
+		}
+		if (reachedSlash) {
+			st_denominator += fractionInput[i];
+		} else {
+			st_numerator += fractionInput[i];
+		}
+    }
+	int numerator = stoi(st_numerator);
+	int denominator = stoi(st_denominator);
+	rational.numerator_ = numerator;
+	rational.denominator_ = denominator;
+	
+
 	return stream;
 }
 
@@ -91,7 +115,7 @@ void Rational::reduceFraction() {
 	int toDivide = min(numerator_, denominator_);
 	int GCF = 0;
 
-	for (int i = 2; i < toDivide; i++) {
+	for (int i = 2; i <= toDivide; i++) {
 		if ((numerator_%i == 0) && (denominator_%i == 0)) {
 			GCF = i;
 		}
@@ -100,9 +124,7 @@ void Rational::reduceFraction() {
 		numerator_ /= GCF;
 		denominator_ /= GCF;
 	}
-
 }
-
 
 bool Rational::set_value(int num, int den) {
 	numerator_ = num;
