@@ -77,7 +77,6 @@ ostream& operator<<(ostream& stream, const Rational& rational) {
 	return stream;
 }
 
-// TODO:
 istream& operator>>(istream& stream,  Rational& rational) {
 	string fractionInput;
 	stream >> fractionInput;
