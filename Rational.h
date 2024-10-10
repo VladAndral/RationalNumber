@@ -22,6 +22,7 @@ class Rational {
     Rational operator-(const Rational& rat) const;
     Rational operator*(const Rational& rat) const;
     Rational operator/(const Rational& rat) const;
+    bool operator=(const Rational& rat) const;
 
     /*
     The previous lines define operations between two fraction objects. But we have not yet defined how to print a
@@ -29,8 +30,6 @@ class Rational {
     define how to print out a rational (from the '<<' when doing 'cout')    
     */
     friend ostream& operator<<(ostream& stream, const Rational& rational);
-    
-    // TODO: Overload inputs to feed in directly to Rational object 
     friend istream& operator>>(istream& stream,  Rational& rational);
 
 

@@ -64,6 +64,10 @@ Rational Rational::operator/(const Rational& refToRatObj) const {
 	return toRetrun;
 }
 
+bool Rational::operator=(const Rational& refToRatObj) const {
+	return (numerator_*refToRatObj.denominator_) == (refToRatObj.numerator_*denominator_);
+	// bool equalDenominators = (denom*refToRatObj.denominator_) == (refToRatObj.numerator_*denominator_)
+}
 
 /*
 The previous lines define operations between two fraction objects. But we have not yet defined how to print a
@@ -85,7 +89,6 @@ istream& operator>>(istream& stream,  Rational& rational) {
 	string st_denominator;
 	bool reachedSlash = false;
 	for (int i = 0; i < fractionInput.length(); i++) {
-        // Convert each character to lowercase using tolower
 		if (fractionInput[i] == '/') {
 			reachedSlash = true;
 			continue;
@@ -115,7 +118,7 @@ void Rational::reduceFraction() {
 	int GCF = 0;
 
 	for (int i = 2; i <= toDivide; i++) {
-		if ((numerator_%i == 0) && (denominator_%i == 0)) {
+		if ((numerator_%i == 0) && (denominator_%i == 0)) { // If both numbers divide evenly into i (no remainder)
 			GCF = i;
 		}
 	}
