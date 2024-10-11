@@ -36,7 +36,9 @@ class Rational {
     void reduceFraction();
 
     private:
-    int numerator_; // Underscore is to let the reader know that the variable is private
+    // Underscore is to let the reader know that the variable is private
+    // Alternatively, could put underscore at front to access private vars in autofill
+    int numerator_; 
     int denominator_;
 
 

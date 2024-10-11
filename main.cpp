@@ -3,7 +3,7 @@
 
 using namespace std;
 
-string convertToLowercase(const string& str);
+string convertToLowercase(string str);
 
 int main() {
 
@@ -15,11 +15,14 @@ int main() {
     string choice;
     cin >> choice;
 
-    cout << "Enter your first fraction [##/##]" << endl;
-    cin >> rat1;
     if (choice != "reduce") {
-    cout << "Enter your second fraction [##/##]" << endl;
-    cin >> rat2;
+        cout << "Enter your first fraction [##/##]" << endl;
+        cin >> rat1;
+        cout << "Enter your second fraction [##/##]" << endl;
+        cin >> rat2;
+    } else {
+        cout << "Enter your fraction [##/##]" << endl;
+        cin >> rat1;        
     }
 
     convertToLowercase(choice);
@@ -63,7 +66,7 @@ int main() {
     }
 }
 
-string convertToLowercase(const string& str) // Borrowed Code
+string convertToLowercase(string str) // Borrowed Code
 {
     string result = "";
     for (int i = 0; i < result.length(); i++) {
