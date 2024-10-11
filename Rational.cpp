@@ -14,6 +14,28 @@ Rational::Rational(int num, int den) : numerator_(num), denominator_(den) {
 	reduceFraction();
 }
 
+Rational::Rational(string numSlashDen) : numerator_(-98999), denominator_(-99999) {
+	string st_numerator;
+	string st_denominator;
+	bool reachedSlash = false;
+	for (int i = 0; i < numSlashDen.length(); i++) {
+		if (numSlashDen[i] == '/') {
+			reachedSlash = true;
+			continue;
+		}
+		if (reachedSlash) {
+			st_denominator += numSlashDen[i];
+		} else {
+			st_numerator += numSlashDen[i];
+		}
+    }
+	int numerator = stoi(st_numerator);
+	int denominator = stoi(st_denominator);
+	numerator_ = numerator;
+	denominator_ = denominator;
+	reduceFraction();
+}
+
 /*
 		SETTERS AND GETTERS
 */
@@ -133,3 +155,26 @@ bool Rational::set_value(int num, int den) {
 	denominator_ = den;
 	return true;
 }
+
+bool Rational::set_value(string numSlashDen) {
+	string st_numerator;
+	string st_denominator;
+	bool reachedSlash = false;
+	for (int i = 0; i < numSlashDen.length(); i++) {
+		if (numSlashDen[i] == '/') {
+			reachedSlash = true;
+			continue;
+		}
+		if (reachedSlash) {
+			st_denominator += numSlashDen[i];
+		} else {
+			st_numerator += numSlashDen[i];
+		}
+    }
+	int numerator = stoi(st_numerator);
+	int denominator = stoi(st_denominator);
+	numerator_ = numerator;
+	denominator_ = denominator;
+	return true;
+}
+

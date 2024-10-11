@@ -10,11 +10,13 @@ class Rational {
     // Constructor
     Rational();
     Rational(int num, int den);
+    Rational(string numSlashDen);
 
     // Gets n Sets
     int getNumerator() const;
     int getDenominator() const;
     bool set_value(int num, int den);
+    bool set_value(string numSlashDen);
 
     // Operator Overloads
     Rational Multiply(const Rational& rat) const;
