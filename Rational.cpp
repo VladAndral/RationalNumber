@@ -7,7 +7,8 @@ using namespace std; // Needed for ostream
 */
 
 // If you initialize a Rational object w/ no params, this is the default loadout
-Rational::Rational() : numerator_(5), denominator_(3) { }
+// If you see this fraction, something probably went wrong
+Rational::Rational() : numerator_(-98999), denominator_(-99999) { }
 
 Rational::Rational(int num, int den) : numerator_(num), denominator_(den) {
 	reduceFraction();
@@ -58,8 +59,8 @@ Rational Rational::operator*(const Rational& refToRatObj) const {
 }
 
 Rational Rational::operator/(const Rational& refToRatObj) const {
-	int numerator = denominator_ * refToRatObj.numerator_;
-	int denominator = numerator_ * refToRatObj.denominator_;
+	int numerator = numerator_ * refToRatObj.denominator_;
+	int denominator = denominator_ * refToRatObj.numerator_;
 	Rational toRetrun(numerator, denominator);
 	return toRetrun;
 }
