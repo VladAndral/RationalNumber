@@ -7,27 +7,30 @@ string convertToLowercase(const string& str);
 
 int main() {
 
-    // Rational rat1;
-    // Rational rat2;
+    Rational rat1;
+    Rational rat2;
 
-    // cout << "Enter your first fraction [##/##]" << endl;
-    // cin >> rat1;
-    // cout << "Enter your second fraction [##/##]" << endl;
-    // cin >> rat2;
+    cout << "What operation would you like to perform?" << endl;
+    cout << "[Add, Subtract, Multiply, Divide, Equal, Reduce]" << endl;
+    string choice;
+    cin >> choice;
 
-    // cout << "What operation would you like to perform?" << endl;
-    // cout << "[Add, Subtract, Multiply, Divide, Equal]" << endl;
-    // string choice;
-    // cin >> choice;
-    // convertToLowercase(choice);
+    cout << "Enter your first fraction [##/##]" << endl;
+    cin >> rat1;
+    if (choice != "reduce") {
+    cout << "Enter your second fraction [##/##]" << endl;
+    cin >> rat2;
+    }
 
-    /*
-    Debugging
-    */
-    Rational rat1 = Rational(5, 6);
-    // Rational rat2 = Rational(6, 7);
-    Rational rat2 = Rational(10, 12);
-    string choice = "equal";
+    convertToLowercase(choice);
+
+    // /*
+    // Debugging
+    // */
+    // Rational rat1 = Rational(9221, 12345);
+    // // Rational rat2 = Rational(6, 7);
+    // Rational rat2 = Rational(10, 12);
+    // string choice = "reduce";
 
     Rational result;
     bool equal;
@@ -40,7 +43,10 @@ int main() {
     } else if (choice == "divide") {
         result = rat1/rat2;
     } else if (choice == "equal") {
-        equal = rat1=rat2;
+        equal = rat1==rat2;
+    } else if (choice == "reduce") {
+        rat1.reduceFraction();
+        result = rat1;
     }
 
     cout << "Here is the result: " << endl;
@@ -52,7 +58,7 @@ int main() {
         }
     } else {
         result.reduceFraction();
-        cout << result << result << endl;
+        cout << result << endl;
 
     }
 }

@@ -22,7 +22,7 @@ class Rational {
     Rational operator-(const Rational& rat) const;
     Rational operator*(const Rational& rat) const;
     Rational operator/(const Rational& rat) const;
-    bool operator=(const Rational& rat) const;
+    bool operator==(const Rational& rat) const;
 
     /*
     The previous lines define operations between two fraction objects. But we have not yet defined how to print a

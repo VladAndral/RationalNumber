@@ -64,7 +64,7 @@ Rational Rational::operator/(const Rational& refToRatObj) const {
 	return toRetrun;
 }
 
-bool Rational::operator=(const Rational& refToRatObj) const {
+bool Rational::operator==(const Rational& refToRatObj) const {
 	return (numerator_*refToRatObj.denominator_) == (refToRatObj.numerator_*denominator_);
 	// bool equalDenominators = (denom*refToRatObj.denominator_) == (refToRatObj.numerator_*denominator_)
 }
