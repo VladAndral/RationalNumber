@@ -13,8 +13,8 @@ int main() {
     Rational rat1;
     Rational rat2;
     vector<string> choices = {"add", "subtract", "multiply", "divide", "equal", "reduce"};
-
     bool correctInput = false;
+
     cout << "What operation would you like to perform?" << endl;
     cout << "[Add, Subtract, Multiply, Divide, Equal, Reduce]" << endl;
     string choice;
@@ -30,44 +30,54 @@ int main() {
     
     correctInput = false;
     string input1;
-    string input2;
     if (choice != "reduce") {
         cout << "Enter your first fraction [##/##]" << endl;
         cin >> input1;
-        cout << "Enter your second fraction [##/##]" << endl;
-        cin >> input2;
     } else {
         cout << "Enter your fraction [##/##]" << endl;
         cin >> input1;        
     }
-    correctInput = isFractionValid(input1) && isFractionValid(input2);
+    correctInput = isFractionValid(input1);
 
     while (!correctInput) {
-        cout << "Input should be number / number" << endl;
-        cout << "E.g. '25/56'" << endl;
+        cout << "Input should be integer/integer," << endl;
+        cout << "E.g. '25/56', denominator must be nonzero" << endl;
         if (choice != "reduce") {
             cout << "Enter your first fraction [##/##]" << endl;
             cin >> input1;
-            cout << "Enter your second fraction [##/##]" << endl;
-            cin >> input2;
         } else {
             cout << "Enter your fraction [##/##]" << endl;
             cin >> input1;        
         }
-        correctInput = isFractionValid(input1) && isFractionValid(input2);
+        correctInput = isFractionValid(input1);
     }
     rat1.set_value(input1);
-    rat2.set_value(input2);
+
+    if (choice != "reduce") {
+        string input2;
+        correctInput = false;
+        cout << "Enter your second fraction [##/##]" << endl;
+        cin >> input2;
+        correctInput = isFractionValid(input2);
+        while (!correctInput) {
+            cout << "Input should be integer/integer," << endl;
+            cout << "E.g. '25/56', denominator must be nonzero" << endl;
+            cout << "Enter your second fraction [##/##]" << endl;
+            cin >> input2;
+            correctInput = isFractionValid(input2);
+        }
+        rat2.set_value(input2);
+    }
 
     // /*
     // Debugging
     // */
-    // Rational rat1 = Rational(9221, 12345);
+    // Rational rat1 = Rational("9/8");
     // // Rational rat2 = Rational(6, 7);
-    // Rational rat2 = Rational(10, 12);
-    // string choices[6] = {"add", "subtract", "multiply", "divide", "equal", "reduce"};
-    // string choice = "reduce";
-    // isInputValid(choice, choices);
+    // Rational rat2 = Rational("7/8");
+    // vector<string> choices = {"add", "subtract", "multiply", "divide", "equal", "reduce"};
+    // string choice = "subtract";
+    // // isInputValid(choice, choices);
 
     Rational result;
     bool equal;
@@ -126,7 +136,13 @@ bool isFractionValid(string input) {
 			numerator += input[i];
 		}
     }
-    return (isStringInt(numerator) && isStringInt(denominator));
+
+    if  (isStringInt(numerator) && isStringInt(denominator)) {
+        int intDenominator = stoi(denominator);
+        return (intDenominator != 0);
+    } else {
+        return false;
+    }
 }
 
 bool isStringInt(string input) {
